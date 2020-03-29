@@ -1,0 +1,50 @@
+  <header>
+    <div class="header home" id="hed_home">
+      <div class="container">
+        <picture class="headlogo"><img src="/icon/favicon-32x32.png" /></picture>
+        <div id="headtotal">
+          <div class="totaltitle">TOTAL NA CARTEIRA</div>
+          <span>$</span> 9.999<span>,99</span>
+        </div>
+
+        <div class="headcontrol">
+          <button onclick="ME.logout()"><i class="material-icons">play_for_work</i> Receber</button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- PERSON -------------------- BEGIN -->
+  <div class="page" id="pg_person">
+    <div class="container">
+      <div class="searchbar">
+        <div class="searchbarinput">
+          <input placeholder="Buscar..." id="searchBarQuery">
+          <button class="btn" id="searchBarGo"><i class="material-icons">search</i></button>
+        </div>
+        <div class="searchbarplus">
+          <div>
+            <label>Ordenar por:</label>
+            <select id="searchBarOrder">
+              <option value="id" selected="">Nenhum</option>
+              <option value="name">Nome</option>
+              <option value="value">Valor</option>
+            </select>
+          </div>
+          <div>
+            <label>Registros por página:</label>
+            <select id="searchBarRpp">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="list" id="person_html"></div>
+    </div>
+  </div>
+  <!-- PERSON ---------------------- END -->

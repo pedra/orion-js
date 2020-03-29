@@ -1,0 +1,71 @@
+/* 
+   -------------------------------------------------------
+            HEADER
+   ------------------------------------------------------- 
+*/
+
+.header {
+	transition: 0.4s;
+	opacity: 0;
+	background: var(--bg-0);
+	color: var(--bg-3);
+	z-index: -200;
+	height: 92px;
+	position: fixed;
+	top: -100px;
+	left: 0;
+	right: 0;
+}
+
+.header.on {
+	z-index: 200;
+	opacity: 1;
+	top: 0;
+}
+
+picture.headlogo {
+	float: left;
+	margin: 0 1rem 0.5rem 0;
+}
+
+#headtotal {
+	font-size: 2rem;
+	float: right;
+}
+
+#headtotal span {
+	font-weight: 100;
+	font-size: 1rem;
+	color: #ccc;
+}
+
+.headcontrol {
+	/* clear: both; */
+	display: block;
+}
+
+.headcontrol button {
+	background: var(--bg-5);
+	width: auto;
+	color: var(--tx-3);
+	font-weight: 100;
+	float: right;
+	padding: .5rem;
+	padding-top: 0;
+	margin: 0;
+}
+.headcontrol button i {
+	font-size: 3rem;
+	display: block;
+}
+
+/* HEADER HOME
+	------------------------------------------- */
+.header.home #headtotal {
+	position: absolute;
+	margin: 0px 0 0 50px;
+	font-size: 3.5rem;
+}
+.header .totaltitle {
+	font-size: 0.8rem;
+}

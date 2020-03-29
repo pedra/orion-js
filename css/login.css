@@ -1,0 +1,153 @@
+/* 
+   -------------------------------------------------------
+            LOGIN
+   ------------------------------------------------------- 
+*/
+
+.login {
+	position: fixed;
+	transition: opacity 0.4s 0.4s !important;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+	opacity: 0;
+}
+
+.login .login-logo {
+	transition: 0.1s all;
+	width: 80px;
+	position: absolute;
+	top: calc(var(--login-pos) - 156px);
+	left: 50%;
+	margin-left: -40px;
+	filter: grayscale(1) blur(30px);
+	transform: scale(0);
+}
+.login.on .login-logo {
+	transition: 0.4s 0.6s all cubic-bezier(0.18, 0.89, 0.32, 4), 0.5s 0.5s filter;
+	transform: none;
+	filter: none;
+}
+
+.login form,
+.login .login-social {
+	position: absolute;
+	width: 240px;
+	left: 50%;
+	margin: auto auto auto -120px;
+}
+
+.login div {
+	position: absolute;
+	width: 240px;
+	transition: 0.4s;
+	top: 0;
+	opacity: 0;
+}
+.login input {
+	background: rgba(158, 212, 255, 0.17);
+	padding: 1rem 0;
+	width: 100%;
+	color: var(--bg-1);
+	text-align: center;
+}
+.login input::placeholder {
+	color: #dddddd;
+	opacity: 1;
+}
+
+.login button,
+.login input {
+	border-radius: 2rem;
+}
+
+.login .log-form1 {
+	transition-delay: 0s;
+}
+.login .log-form2 {
+	transition-delay: 0.1s;
+}
+.login .log-form3 {
+	transition-delay: 0.2s;
+}
+
+/* ----------------------- ON ------------------------------- */
+
+.login.on {
+	transition: opacity 0.4s 0.2s !important;
+	opacity: 1;
+}
+
+.login.on div {
+	opacity: 1;
+}
+
+.login.on .log-form1 {
+	transition-delay: 0.3s;
+	top: var(--login-pos);
+}
+.login.on .log-form2 {
+	transition-delay: 0.2s;
+	top: calc(var(--login-pos) + 60px);
+}
+.login.on .log-form3 {
+	transition-delay: 0.1s;
+	top: calc(var(--login-pos) + 120px);
+}
+
+/* 	EFEITO NOS ICONES SOCIAIS
+	--------------------------------------------------------- */
+
+.login .login-social img {
+	position: absolute;
+	width: 44px;
+	border-radius: 3px;
+	top: 115vh;
+	transition: 0.4s;
+	cursor: pointer;
+	opacity: 0.4;
+	border-radius: 50%;
+}
+.login .social-fb {
+	transition-delay: 0.6s;
+	margin-left: 0;
+}
+
+.login .social-do {
+	transition-delay: 0.5s;
+	margin-left: 65px;
+}
+
+.login .social-go {
+	transition-delay: 0.4s;
+	margin-left: 130px;
+}
+
+.login .social-tw {
+	transition-delay: 0.3s;
+	margin-left: 195px;
+}
+
+/* ----------------------- ON ------------------------------- */
+
+.login.on .login-social img {
+	top: calc(var(--login-pos) + 260px);
+}
+
+.login.on .social-fb {
+	transition-delay: 0.3s;
+}
+
+.login.on .social-do {
+	transition-delay: 0.4s;
+}
+
+.login.on .social-go {
+	transition-delay: 0.5s;
+}
+
+.login.on .social-tw {
+	transition-delay: 0.6s;
+}

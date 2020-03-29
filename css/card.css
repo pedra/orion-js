@@ -1,0 +1,62 @@
+/* 
+   -------------------------------------------------------
+            CARDS
+   ------------------------------------------------------- 
+*/
+
+.card {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+	padding: 1rem 0;
+	transform: translateY(-100px);
+	transform-origin: top;
+	opacity: 0;
+}
+.card.on {
+	transition: 0.1s;
+	transform: none;
+	opacity: 1;
+}
+
+.card img {
+	float: left;
+	margin: 0 1rem 0 0;
+	border-radius: 50%;
+	width: 56px;
+}
+
+.card .card_menu {
+	display: none;
+}
+
+.card .card_content {
+	width: 100%;
+}
+.card .person_name {
+	font-weight: bold;
+	color: var(--bt1-bg);
+}
+
+.card .card_content span {
+	color: var(--tx-4);
+}
+
+.card .person_value {
+	color: var(--bt1-bg);
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: right;
+	width: 50%;
+	margin: 11px 0 0 0;
+}
+.card .person_value span {
+	font-weight: 100;
+	font-size: 0.8rem;
+	margin: 0 0.2rem 0 0;
+	color: var(--tx-7);
+}
+.card .person_value span:last-child {
+	font-size: 0.8rem;
+	font-weight: bold;
+	margin: 0;
+}

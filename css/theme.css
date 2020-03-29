@@ -1,0 +1,52 @@
+/* VARIABLES
+   ----------------------------------------------------------------- */
+:root {
+	--tx-1: #222222;
+	--tx-2: #444444;
+	--tx-3: #555555;
+	--tx-4: #666666;
+	--tx-5: #777777;
+	--tx-6: #888888;
+	--tx-7: #999999;
+
+	--bg-0: transparent;
+	--bg-1: #ffffff;
+	--bg-2: #f9f9f9;
+	--bg-3: #f4f4f4;
+	--bg-4: #f0f0f0;
+	--bg-5: #eeeeee;
+	--bg-6: #dddddd;
+	--bg-7: #cccccc;
+
+	--bt-color: #2222222;
+	--bt-bg: #f9f9f9;
+	--bt-bgimg: linear-gradient(0deg, #f9f9f9, #ffffff);
+
+	--bt1-color: #ffffff;
+	--bt1-bg: #00073e;
+	--bt1-bgimg: linear-gradient(0deg, #00073e, #09188e);
+
+	--bt2-color: #ffffff;
+	--bt2-bg: #96bd1b;
+	--bt2-bgimg: linear-gradient(0deg, #719400, #96bd1b);
+
+	--bt3-color: #ffffff;
+	--bt3-bg: rgba(33, 150, 243, 0.5);
+	--bt3-bgimg: linear-gradient(0deg, #cccccc, #dcdcdc);
+
+	--primary-color: #ffffff;
+	--secundary-color: #96bd1b;
+	--primary-text-color: #111111;
+
+	--login-pos: 40vh;
+
+	--section-video-color: #0c0c0a;
+
+	--nav-link-1: #ffffdd;
+	--nav-link-2: #ffffff;
+	--nav-border-1: #7a9e08;
+	--nav-border-2: #444477;
+
+	--footer-primary: #ffffff;
+	--footer-secundary: #00294a;
+}
