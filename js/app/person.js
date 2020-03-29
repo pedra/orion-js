@@ -66,7 +66,8 @@
 			'Index',
 			{query: PERSON.page.query, page: PERSON.page.page, rpp: PERSON.page.rpp, order: PERSON.page.order},
 			(e, res) => {
-				if ('undefined' != res['error'] && res.error == true) {
+				TMP = res
+				if (('undefined' != res['error'] && res.error == true) || null == res['data']) {
 					report(_m('person', 0))
 					PERSON.persons = []
 					PERSON.list()
