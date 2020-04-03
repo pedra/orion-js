@@ -2,7 +2,7 @@
 
 # Orion-JS
 
-Client-side to Orion Project
+Client-side library to Orion Project
 
 <sub>![logo](https://github.com/fdutrar/orion-node/blob/master/public/icon/favicon-16x16.png)</sub> https://orion-js.netlify.com
 
