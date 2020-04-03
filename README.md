@@ -10,51 +10,52 @@ To save persistence data to a file in the application's cache, it is **necessary
 
 # Build
 
-**_ This script requires Babel & Gulp 4 or later _**
+**This script requires Babel & Gulp 4 or later**
+
 Before using, install the latest version of GULP-CLI and the necessary plugins:
 
 `npm i --save-dev @babel/cli @babel/core @babel/polyfill @babel/preset-env @babel/register gulp@4 gulp-concat gulp-if gulp-babel gulp-javascript-obfuscator gulp-uglify uglify-es yargs`
 
 Add these lines to your package.js
 
-````"babel": {
-    "presets": [ "@babel/preset-env"]
-},```
+`"babel": { "presets": [ "@babel/preset-env"] },`
 
 
 Using:
 
-```gulp [-pob]```
+`gulp [-pob]`
 
 Options:
+
 **-p** = production mode (minified)
+
 **-o** = obfuscated scripts
+
 **-b** = use Babel (for oldies navigators)
 
 Both script and the service worker file will be mounted in the "/dist" directory
 
 
-Crypto
-======
+## Crypto
 
 Load the script into your "index.html" using the appropriate tag:
 
-```<script src="/dist/script.js"></script>```
+`<script src="/dist/script.js"></script>`
 
-To encrypt with RSA:
-===
+### To encrypt with RSA:
 
-``` var publicKey = "MIIBIjANBgkqhkiG9w0B ... your rsa public key
-    var data = {foo: "foo", bar: "bar"}
-    var rsaBase64String = RSA.encrypt(JSON.stringify(data)), RSA.getPublicKey(publicKey))```
+`var publicKey = "MIIBIjANBgkqhkiG9w0B ... your rsa public key`
+ 
+`var data = {foo: "foo", bar: "bar"}`
+ 
+`var rsaBase64String = RSA.encrypt(JSON.stringify(data)), RSA.getPublicKey(publicKey))`
 
-To encrypt and decrypt with AES:
-===
+### To encrypt and decrypt with AES:
 
-``` var encrypted = AES.encrypt("Hello World!", "senha123")```
+`var encrypted = AES.encrypt("Hello World!", "senha123")`
 
-````
+`var decrypted = AES.decrypt(encrypted, "senha123")`
 
 ---
 
-_By Bill Rocha <https://billrocha.netlify.com>_
+By Bill Rocha <https://billrocha.netlify.com>
