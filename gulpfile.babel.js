@@ -69,7 +69,7 @@ const vendor_rsa = () =>
 const lib = () =>
 	src(['src/vendor/aes.js', 'src/vendor/rsa.js', 'src/gate.js'])
 		.pipe(gulpif(BABEL, babel()))
-		.pipe(gulpif(PRO, concat('script.js'), concat('script.dev.js')))
+		.pipe(gulpif(PRO, concat('gate.js'), concat('gate.dev.js')))
 		.pipe(gulpif(PRO, uglify()))
 		.pipe(gulpif(OBF, javascriptObfuscator({compact: true, sourceMap: false})))
 		.pipe(dest('dist'))

@@ -20,7 +20,6 @@ Add these lines to your package.js
 
 `"babel": { "presets": [ "@babel/preset-env"] },`
 
-
 Using:
 
 `gulp [-pob]`
@@ -35,19 +34,18 @@ Options:
 
 Both script and the service worker file will be mounted in the "/dist" directory
 
-
 ## Crypto
 
 Load the script into your "index.html" using the appropriate tag:
 
-`<script src="/dist/script.js"></script>`
+`<script src="/dist/gate.js"></script>`
 
 ### To encrypt with RSA:
 
 `var publicKey = "MIIBIjANBgkqhkiG9w0B ... your rsa public key`
- 
+
 `var data = {foo: "foo", bar: "bar"}`
- 
+
 `var rsaBase64String = RSA.encrypt(JSON.stringify(data)), RSA.getPublicKey(publicKey))`
 
 ### To encrypt and decrypt with AES:
