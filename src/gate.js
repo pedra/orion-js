@@ -1,29 +1,3 @@
-/*
- * This function is to report a message to the user.
- * The following is a very simple example.
- */
-const report = (id, type) => {
-	type = type || 'alert'
-	msg = [
-		'The public key was not obtained! <br> Check the internet connection.',
-		'You need to enter your login',
-		'Type the password',
-		'The Local Key was not generated!',
-		'Check your login and password!',
-		'Connected with SUCCESS!',
-		'Unplugged',
-		'I was unable to get the public key from the server :(',
-		'I was unable to connect to the server!'
-	]
-	return alert(msg[id])
-}
-
-/*
- * This function is to place a "gif loader" on the screen
- * to block the user's action while loading/sending data from the server.
- */
-const glass = g => null
-
 /* GATEWAY
    ----------------------------------------------------------------------------
  * Gate static object
@@ -75,10 +49,10 @@ const GATE = {
 	ukey: '',
 
 	init: (homePage, loginPage, configUrl, keyUrl, loginUrl, gateUrl, report, glass) => {
-		GATE.homePage = 'function' == typeof homePage ? homePage : () => null
-		GATE.loginPage = 'function' == typeof loginPage ? loginPage : () => null
-		GATE.report = 'function' == typeof report ? report : () => null
-		GATE.glass = 'function' == typeof glass ? glass : () => null
+		GATE.homePage = _f(homePage)
+		GATE.loginPage = _f(loginPage)
+		GATE.report = _f(report)
+		GATE.glass = _f(glass)
 
 		GATE.configUrl = configUrl || '/config'
 		GATE.keyUrl = keyUrl || '/key'
@@ -86,8 +60,8 @@ const GATE = {
 		GATE.gateUrl = gateUrl || '/gate'
 
 		// Carregando configuração do Cache Storage
-		GATE.load(e, data => {
-			if (e !== false) {
+		GATE.load((e, data) => {
+			if (e !== false && 'undefined' == typeof data['id']) {
 				GATE.ukey = rpass() // Gerando a chave local para AES
 				return GATE.loginPage()
 			}
@@ -104,8 +78,8 @@ const GATE = {
 	login: (login, passwd) => GATE.getPublicKey(rsa => GATE.log(login, passwd)),
 	log: (login, passwd) => {
 		// Check ...
-		if (GATE.rsa == '') return GATE.report(0)
-		if (GATE.ukey == '') return GATE.report(3)
+		if (GATE.rsa == '') return GATE.report('gate', 0)
+		if (GATE.ukey == '') return GATE.report('gate', 3)
 
 		var data = {
 			app: GATE.app_id,
@@ -128,13 +102,13 @@ const GATE = {
 		GATE.post(GATE.loginUrl, data, (e, res) => {
 			GATE.glass(false) // open the glass
 
-			if (e) return GATE.report(4)
+			if (e) return GATE.report('gate', 4)
 
 			// Checando a sincronização com o servidor (criptografia ok)
 			GATE.sync(res, (e, data) => {
-				if (e) return GATE.report(4)
+				if (e) return GATE.report('gate', 4)
 
-				GATE.report(5, 'info')
+				GATE.report('gate', 5, 'info')
 				return GATE.homePage()
 			})
 		})
@@ -152,7 +126,7 @@ const GATE = {
 		// Save (clear config file)
 		GATE.save(() => {
 			GATE.loginPage()
-			GATE.report(6, 'info')
+			GATE.report('gate', 6, 'info')
 		})
 	},
 
@@ -197,7 +171,7 @@ const GATE = {
 			GATE.glass(false) // open the glass
 
 			if (e) {
-				GATE.report(8)
+				GATE.report('gate', 8)
 				return cb(true, res)
 			}
 
@@ -234,8 +208,16 @@ const GATE = {
 
 	isValidToken: () =>
 		GATE.gate(GATE.controller, GATE.chkTokenAction, {}, e => (e ? GATE.loginPage() : GATE.homePage())),
-	save: cb => GATE.post(GATE.configUrl, {id: GATE.id, token: GATE.token, ukey: GATE.ukey}, cb),
-	load: cb => GATE.get(GATE.configUrl, cb),
+	save: cb => GATE.post(GATE.configUrl, JSON.stringify({id: GATE.id, token: GATE.token, ukey: GATE.ukey}), cb),
+	load: cb =>
+		GATE.get(GATE.configUrl, (e, d) => {
+			if (e !== false) cb(true, {})
+			var data = {}
+			try {
+				data = JSON.parse(d)
+			} catch (x) {}
+			return cb(e, data)
+		}),
 
 	// Send a HTTP GET
 	get: (url, cb) => {

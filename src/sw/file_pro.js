@@ -1,5 +1,5 @@
 // CACHE ----------------------------------------------------------------------------
-const VERSION = '2003182214-pro'
+const VERSION = '2004041619'
 const FILES = [
 	'/',
 
@@ -14,5 +14,5 @@ const FILES = [
 	// '/icon/apple-touch-icon.png',
 	// '/icon/safari-pinned-tab.svg',
 
-	'/js/script.js'
+	'/dist/gate.js'
 ]

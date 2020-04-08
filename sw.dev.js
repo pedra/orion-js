@@ -1,8 +1,7 @@
 // CACHE ----------------------------------------------------------------------------
 const VERSION = '2004041619-dev'
 const FILES = [
-	'/demo/',
-	//'/config',
+	'/',
 
 	// Opcional manifest files ------
 	// '/icon/site.json',

@@ -81,7 +81,7 @@ const sw = () => {
 		.pipe(gulpif(PRO, concat('sw.js'), concat('sw.dev.js')))
 		.pipe(gulpif(PRO, uglify()))
 		.pipe(gulpif(OBF, javascriptObfuscator({compact: true, sourceMap: false})))
-		.pipe(dest('dist'))
+		.pipe(dest('./'))
 }
 
 // TASKs ----------------------------------------------------------- [TASKs]
