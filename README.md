@@ -4,7 +4,7 @@
 
 Client-side library to Orion Project
 
-<sub>![logo](https://github.com/fdutrar/orion-node/blob/master/public/icon/favicon-16x16.png)</sub> https://orion-js.netlify.com
+<sub>![logo](https://github.com/fdutrar/orion-node/blob/master/public/icon/favicon-16x16.png)</sub> https://orion-sample.netlify.com
 
 To save persistence data to a file in the application's cache, it is **necessary** to install ServiceWorker (`/dist/sw.js`). Understand how this **SW** works by observing it on the way: `/src/sw`
 
