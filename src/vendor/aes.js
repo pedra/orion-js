@@ -1171,7 +1171,7 @@ var AES = {
 	},
 
 	base64ToHex: str => {
-		for (var i = 0, bin = atob(str.replace(/[ \r\n]+$/, '')), hex = []; i < bin.length; ++i) {
+		for (var i = 0, bin = atob(str.replace(/[\r\n]+$/, '')), hex = []; i < bin.length; ++i) {
 			var tmp = bin.charCodeAt(i).toString(16)
 
 			if (tmp.length === 1) tmp = '0' + tmp

@@ -248,6 +248,7 @@
     <script src="/src/lib/page.js"></script>
     <script src="/dist/gate.dev.js"></script>
     <script>
+        let TMP, TMP1, TMP2, TMP3, TMP4
         window.onload = () => {
 
             // install Service Worker
@@ -263,8 +264,10 @@
 
             LANG.load('pt_BR')
 
-            GATE.init(PAGE.home, PAGE.login, '/config', 'https://e-wallet.tk/key', 'https://e-wallet.tk/login',
-                'https://e-wallet.tk/gate', SHOW.msg, SHOW.glass)
+            //GATE.init(PAGE.home, PAGE.login, '/config', 'https://e-wallet.tk/key', 'https://e-wallet.tk/login','https://e-wallet.tk/gate', SHOW.msg, SHOW.glass)
+
+            GATE.init(PAGE.home, PAGE.login, '/config', 'http://localhost:81/key', 'http://localhost:81/login',
+                'http://localhost:81/gate', SHOW.msg, SHOW.glass)
 
             SHOW.glass(false) // Abrindo a "janela"
         }

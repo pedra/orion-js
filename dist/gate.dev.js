@@ -1171,7 +1171,7 @@ var AES = {
 	},
 
 	base64ToHex: str => {
-		for (var i = 0, bin = atob(str.replace(/[ \r\n]+$/, '')), hex = []; i < bin.length; ++i) {
+		for (var i = 0, bin = atob(str.replace(/[\r\n]+$/, '')), hex = []; i < bin.length; ++i) {
 			var tmp = bin.charCodeAt(i).toString(16)
 
 			if (tmp.length === 1) tmp = '0' + tmp
@@ -3196,6 +3196,12 @@ const GATE = {
 
 	// Checking the synchronization ...
 	sync: (res, cb) => {
+		TMP = res
+		res = res.replace(/"/g, '').replace(/\\u002B/g, '+') //para o netcore que manda aspas indesejadas :P
+
+		TMP1 = res
+		console.log('GATE:', res)
+
 		if ('undefined' != typeof res['error']) {
 			GATE.reset()
 			return cb(true, res.data)
@@ -3206,7 +3212,10 @@ const GATE = {
 		// Decrypting ...
 		try {
 			var dec = AES.decrypt(res, GATE.ukey)
+			console.log('GATE1:', dec)
 			data = JSON.parse(dec)
+
+			console.log('GATE2:', data)
 
 			GATE.id = data.id
 			GATE.ukey = data.ukey
@@ -3215,6 +3224,7 @@ const GATE = {
 			// Save in Cache Storage
 			GATE.save(e => cb(e !== false ? true : false, data))
 		} catch (e) {
+			console.log('GATE3:', e)
 			GATE.reset()
 			return cb(true, e)
 		}
