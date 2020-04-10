@@ -3197,8 +3197,9 @@ const GATE = {
 	// Checking the synchronization ...
 	sync: (res, cb) => {
 		TMP = res
-		res = res.replace(/"/g, '').replace(/\\u002B/g, '+') //para o netcore que manda aspas indesejadas :P
-
+		// Old: .replace(/\\u002B/g, '+')
+		// OBS: para o netcore que manda aspas indesejadas e codificação em UTF-8 :P
+		res = res.replace(/"/g, '').replace(/\\u([\d\w]{4})/gi, (m, h) => String.fromCharCode(parseInt(h, 16)))
 		TMP1 = res
 		console.log('GATE:', res)
 
