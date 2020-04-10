@@ -3197,9 +3197,12 @@ const GATE = {
 	// Checking the synchronization ...
 	sync: (res, cb) => {
 		TMP = res
+		try {
+			var res = JSON.parse(TMP)
+		} catch (e) {}
 		// Old: .replace(/\\u002B/g, '+')
 		// OBS: para o netcore que manda aspas indesejadas e codificação em UTF-8 :P
-		res = res.replace(/"/g, '').replace(/\\u([\d\w]{4})/gi, (m, h) => String.fromCharCode(parseInt(h, 16)))
+		//res = res.replace(/"/g, '').replace(/\\u([\d\w]{4})/gi, (m, h) => String.fromCharCode(parseInt(h, 16)))
 		TMP1 = res
 		console.log('GATE:', res)
 
@@ -3218,9 +3221,9 @@ const GATE = {
 
 			console.log('GATE2:', data)
 
-			GATE.id = data.id
-			GATE.ukey = data.ukey
-			GATE.token = data.token
+			if (data.id) GATE.id = data.id
+			if (data.ukey) GATE.ukey = data.ukey
+			if (data.token) GATE.token = data.token
 
 			// Save in Cache Storage
 			GATE.save(e => cb(e !== false ? true : false, data))

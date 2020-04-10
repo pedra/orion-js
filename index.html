@@ -19,7 +19,7 @@
     <meta name="msapplication-config" content="/icon/browserconfig.xml">
     <meta name="theme-color" content="#00073e">
 
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
         .w5_toast {
@@ -157,22 +157,25 @@
         html {
             background: url(/img/bg.jpg) center center no-repeat;
             background-size: cover;
+            background-color: #f4f4f4;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+            font-size: 14px;
         }
 
         body {
             display: flex;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
             margin: 0;
             padding: 0;
-            background: rgba(38, 38, 38, 0.72);
+            background: rgba(38, 38, 38, 0);
         }
 
         h1 {
-            font-family: 'Oswald', sans-serif;
             font-size: 3rem;
-            color: #000;
-            text-shadow: 1px 1px 1px #555;
-
+            color: #9fec81;
+            text-shadow: 1px 1px 1px #000;
         }
 
         p {
@@ -208,6 +211,12 @@
             box-shadow: 2px 2px 2px #000 inset, -1px -1px 2px #444 inset, 0px 0px 0px #ffffff44, 0px 0px 0px #000;
         }
 
+        button .material-icons {
+            font-size: 1.1rem;
+            margin: 0 .5rem 0 1rem;
+            float: left;
+        }
+
         .control button:first-child {
             margin-left: 0;
         }
@@ -215,18 +224,133 @@
         .control button:last-child {
             margin-right: 0;
         }
+
+
+        /** INPUT
+        ----------------------------------------- */
+        label {
+            display: block;
+            color: #333333;
+            font-size: 1rem;
+            margin: 0 0 1rem 0;
+        }
+
+        input {
+            display: block;
+            background: rgba(0, 0, 0, .2);
+            border: none;
+            border-bottom: 3px solid green;
+            padding: 1rem 0 .5rem 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            color: #9fec81;
+            margin: 0 0 2rem 0;
+            width: 100%;
+        }
+
+        /** PAGE
+        ----------------------------------------- */
+        .page {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: auto;
+            transition: .4s;
+
+            transform-style: preserve-3d;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .page.on {
+            opacity: 1;
+            transform: none;
+            z-index: 100;
+        }
+
+        .page.up {
+            top: -500px;
+            bottom: 500px;
+            transform: scale(.5) rotateX(-40deg);
+        }
+
+        .page.down {
+            top: 500px;
+            bottom: -500px;
+            transform: scale(.5) rotateX(40deg);
+        }
+
+        .page.left {
+            left: -500px;
+            right: 500px;
+            transform: scale(.5) rotateY(-40deg);
+        }
+
+        .page.right {
+            left: 500px;
+            right: -500px;
+            transform: scale(.5) rotateY(40deg);
+        }
+
+        .page.up.on,
+        .page.down.on,
+        .page.left.on,
+        .page.right.on {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: none;
+        }
+
+        /** PAGE REGISTRY
+        ----------------------------------------- */
+        #pg-registry .container {
+            max-width: 320px;
+        }
+
+        #pg-registry p {
+            margin: 0 0 4rem 0;
+        }
     </style>
 </head>
 
 <body>
+    <div class="page left on" id="pg-home">
+        <div class="container">
+            <h1>ORION-JS</h1>
+            <p>Sistema com criptografia avançada e transporte de dados por conexão segura.</p>
+            <div class="control">
+                <button onclick="GATE.login('admin@azw5.com', 'Ab123456')"><i
+                        class="material-icons">lock</i>Login</button>
+                <button onclick="page()"><i class="material-icons">save</i>Home</button>
+                <button onclick="page()"><i class="material-icons">loop</i>Form</button>
+            </div>
+        </div>
+    </div>
 
-    <div class="container">
-        <h1>ORION-JS</h1>
-        <p>Sistema com criptografia avançada e transporte de dados por conexão segura.</p>
-        <div class="control">
-            <button onclick="GATE.login('admin@azw5.com', 'Ab123456')">Login</button>
-            <button onclick="GATE.save((e,d) => console.log(e, d))">Save</button>
-            <button onclick="GATE.load((e,d) => console.log(e, d))">Load</button>
+    <div class="page right" id="pg-registry">
+        <div class="container">
+            <h1>Cadastro</h1>
+            <p>Preencha todos os dados abaixo para receber acesso à plataforma.</p>
+            <form onsubmit="return form_submit()" autocomplete="off">
+                <label for="reg-name" aria-required="true">Nome</label>
+                <input id="reg-name">
+
+                <label for="reg-email">Email</label>
+                <input id="reg-email" type="email" aria-required="true" autocomplete="off">
+
+                <label for="reg-passw">Senha</label>
+                <input id="reg-passw" type="password" aria-required="true" autocomplete="off">
+            </form>
+            <div class="control">
+                <button onclick="GATE.login('admin@azw5.com', 'Ab123456')"><i
+                        class="material-icons">lock</i>Entrar</button>
+                <button onclick="page()"><i class="material-icons">close</i>Cancelar</button>
+            </div>
         </div>
     </div>
 
@@ -270,6 +394,11 @@
                 'http://localhost:81/gate', SHOW.msg, SHOW.glass)
 
             SHOW.glass(false) // Abrindo a "janela"
+        }
+
+        const page = page => {
+            _('#pg-home').classList.toggle('on')
+            _('#pg-registry').classList.toggle('on')
         }
     </script>
 </body>
