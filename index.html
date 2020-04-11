@@ -173,9 +173,11 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 4rem;
+            font-weight: 400;
             color: #9fec81;
             text-shadow: 1px 1px 1px #000;
+            text-align: center;
         }
 
         p {
@@ -190,63 +192,127 @@
             margin: 0 auto;
         }
 
+        .control {
+            margin: 5rem 0;
+            display: grid;
+            grid-gap: 1rem;
+            grid-auto-flow: column;
+        }
+
         button {
             transition: .4s;
-            transition-timing-function: cubic-bezier(0.65, -0.82, 0, 1.01);
             cursor: pointer;
             height: 3rem;
-            width: 8rem;
+            padding: unset;
+            padding-left: 1rem;
+            padding-right: 1.2rem;
             background: #444;
             border: none;
             border-radius: 10px;
             color: #a9a9a9;
-            margin: 1rem;
-            text-shadow: 2px 2px 2px #000;
-            box-shadow: 1px 1px 5px #000 inset, -3px -3px 12px #444 inset, -2px -2px 30px #444, 10px 10px 30px #000;
+            display: flex;
+            text-shadow: 1px 1px 1px #000;
+            /* box-shadow: 1px 1px 5px #000 inset, -3px -3px 12px #444 inset, -2px -2px 30px #444, 10px 10px 30px #000; */
+            box-shadow: 2px 2px 5px #000;
         }
 
         button:hover {
             color: #ffffff;
-            background: #333;
-            box-shadow: 2px 2px 2px #000 inset, -1px -1px 2px #444 inset, 0px 0px 0px #ffffff44, 0px 0px 0px #000;
+            background: #1d1d1d;
+            /* box-shadow: 2px 2px 2px #000 inset, -1px -1px 2px #444 inset, 0px 0px 0px #ffffff44, 0px 0px 0px #000; */
         }
 
         button .material-icons {
             font-size: 1.1rem;
-            margin: 0 .5rem 0 1rem;
+            margin: 0 .5rem 0 0;
             float: left;
         }
 
-        .control button:first-child {
+        /* .control button:first-child {
             margin-left: 0;
         }
 
         .control button:last-child {
             margin-right: 0;
-        }
+        } */
 
 
         /** INPUT
         ----------------------------------------- */
-        label {
+        label,
+        input {
             display: block;
-            color: #333333;
-            font-size: 1rem;
-            margin: 0 0 1rem 0;
+            color: red;
+            text-align: center;
+            width: 100%;
+            font-size: 1.2rem;
         }
 
         input {
-            display: block;
             background: rgba(0, 0, 0, .2);
             border: none;
-            border-bottom: 3px solid green;
+            border-bottom: 1px solid #405d1f;
             padding: 1rem 0 .5rem 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-align: center;
-            color: #9fec81;
             margin: 0 0 2rem 0;
-            width: 100%;
+        }
+
+        .input-form {
+            display: flex;
+            flex-direction: column-reverse;
+            /* flex-flow: wrap-reverse; */
+        }
+
+        .input-form input {
+            border-color: red;
+        }
+
+        .input-form label {
+            transition: .6s;
+            font-weight: 300;
+        }
+
+        .input-form input:placeholder-shown+label {
+            margin: 2rem 0 -2rem 0;
+            color: red;
+            font-weight: bold;
+        }
+
+        .input-form input:focus+label {
+            color: #333;
+            margin: 0;
+            font-weight: inherit;
+        }
+
+
+
+        input:valid,
+        input:valid+label {
+            border-color: #4CAF50;
+            color: #9fec81;
+        }
+
+        input:valid+label {
+            color: #00544c;
+        }
+
+        .input-form span {
+            transition: 1s;
+            color: #888;
+            font-weight: 300;
+            font-style: italic;
+            position: absolute;
+            width: 320px;
+            margin: 23px 0 0 0;
+            height: 50px;
+            opacity: 1;
+        }
+
+        .input-form input:focus+label+span {
+            opacity: 1;
+        }
+
+        input:valid+label+span {
+            opacity: 0 !important;
         }
 
         /** PAGE
@@ -258,56 +324,57 @@
             left: 0;
             right: 0;
             overflow: auto;
-            transition: .4s;
-
+            transition: 2.4s;
             transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transition: .4s cubic-bezier(1, -0.33, 0.02, 0.16);
+            box-shadow: 20px 20px 30px rgba(0, 0, 0, .8);
             opacity: 0;
             z-index: 0;
+            background: rgba(0, 0, 0, .8);
         }
 
         .page.on {
             opacity: 1;
-            transform: none;
+            transform: none !important;
             z-index: 100;
         }
 
         .page.up {
-            top: -500px;
-            bottom: 500px;
-            transform: scale(.5) rotateX(-40deg);
+            transform: translateY(-600px) scale(.9);
+            transition-duration: .4s;
         }
 
         .page.down {
-            top: 500px;
-            bottom: -500px;
-            transform: scale(.5) rotateX(40deg);
+            transform: translateY(600px) scale(.9);
+            transition-duration: .4s;
         }
 
         .page.left {
-            left: -500px;
-            right: 500px;
-            transform: scale(.5) rotateY(-40deg);
+            /* transform: perspective(1000px) rotateY(-180deg); */
+            transform: translateX(-600px) scale(.9);
+            transform-origin: left;
         }
 
         .page.right {
-            left: 500px;
-            right: -500px;
-            transform: scale(.5) rotateY(40deg);
+            /* transform: perspective(1000px) rotateY(180deg); */
+            transform: translateX(600px) scale(.9);
+            transform-origin: right;
         }
 
         .page.up.on,
         .page.down.on,
         .page.left.on,
-        .page.right.on {
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            transform: none;
-        }
+        .page.right.on {}
 
         /** PAGE REGISTRY
         ----------------------------------------- */
+        .page#pg-registry {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         #pg-registry .container {
             max-width: 320px;
         }
@@ -319,37 +386,46 @@
 </head>
 
 <body>
-    <div class="page left on" id="pg-home">
+    <div class="page down on" id="pg-home">
         <div class="container">
             <h1>ORION-JS</h1>
             <p>Sistema com criptografia avançada e transporte de dados por conexão segura.</p>
             <div class="control">
                 <button onclick="GATE.login('admin@azw5.com', 'Ab123456')"><i
                         class="material-icons">lock</i>Login</button>
-                <button onclick="page()"><i class="material-icons">save</i>Home</button>
-                <button onclick="page()"><i class="material-icons">loop</i>Form</button>
+                <button onclick="PAGE.login()"><i class="material-icons">save</i>Home</button>
+                <button onclick="PAGE.home()"><i class="material-icons">loop</i>Cadastro</button>
             </div>
         </div>
     </div>
 
-    <div class="page right" id="pg-registry">
+    <div class="page up" id="pg-registry">
         <div class="container">
             <h1>Cadastro</h1>
             <p>Preencha todos os dados abaixo para receber acesso à plataforma.</p>
             <form onsubmit="return form_submit()" autocomplete="off">
-                <label for="reg-name" aria-required="true">Nome</label>
-                <input id="reg-name">
-
-                <label for="reg-email">Email</label>
-                <input id="reg-email" type="email" aria-required="true" autocomplete="off">
-
-                <label for="reg-passw">Senha</label>
-                <input id="reg-passw" type="password" aria-required="true" autocomplete="off">
+                <div class="input-form">
+                    <input id="reg-name" placeholder="&nbsp;" required="true" pattern="\S(?:\s*\S){3}.*\S">
+                    <label for="reg-name">Nome</label>
+                    <span>O nome tem que ter 5 caracteres ou mais.</span>
+                </div>
+                <div class="input-form">
+                    <input id="reg-email" type="email" required="true" placeholder="&nbsp;"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <label for="reg-email">Email</label>
+                </div>
+                <div class="input-form">
+                    <input id="reg-passw" type="password" required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Letra maiúscula, minúscula, número e 8 ou mais caracteres." placeholder="&nbsp;">
+                    <label for="reg-passw">Senha</label>
+                    <span>A senha tem que ter, pelo menos, uma letra maiúscula, minúscula, número e 8 ou mais
+                        caracteres.</span>
+                </div>
             </form>
             <div class="control">
                 <button onclick="GATE.login('admin@azw5.com', 'Ab123456')"><i
                         class="material-icons">lock</i>Entrar</button>
-                <button onclick="page()"><i class="material-icons">close</i>Cancelar</button>
+                <button onclick="PAGE.home()"><i class="material-icons">close</i>Cancelar</button>
             </div>
         </div>
     </div>
@@ -394,11 +470,6 @@
                 'http://localhost:81/gate', SHOW.msg, SHOW.glass)
 
             SHOW.glass(false) // Abrindo a "janela"
-        }
-
-        const page = page => {
-            _('#pg-home').classList.toggle('on')
-            _('#pg-registry').classList.toggle('on')
         }
     </script>
 </body>

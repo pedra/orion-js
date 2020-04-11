@@ -7,6 +7,12 @@
 */
 
 const PAGE = {
-	home: () => console.log('Página HOME'),
-	login: () => console.log('Página LOGIN')
+	home: () => {
+		_('#pg-registry').classList.remove('on')
+		_('#pg-home').classList.add('on')
+	},
+	login: () => {
+		_('#pg-home').classList.remove('on')
+		_('#pg-registry').classList.add('on')
+	}
 }
